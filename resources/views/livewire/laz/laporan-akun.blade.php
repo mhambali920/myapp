@@ -116,17 +116,16 @@
     </div>
 
     <x-jet-dialog-modal wire:model="isModalOpen">
-        <form wire:submit.prevent="uploadCsv">
+        <form wire:submit.prevent="uploadCsv" method="POST" enctype="multipart/form-data">
+            @csrf
             <x-slot name="title">
                 {{ __('Upload your CSV File') }}
             </x-slot>
             <x-slot name="content">
-                @if ($csv)
-                @dd($csv)
-                @endif
+
                 <div>Upload file csv yang di download dari akun sellercenter lazada versi baru</div>
                 <div class="w-full border mt-2">
-                    <input type="file" wire:model="csv" id="csv" class="block w-full text-sm text-slate-500
+                    <input type="file" wire:model="csv" id="csv" name="csv" class="block w-full text-sm text-slate-500
           file:mr-4 file:py-2 file:px-4
           file:rounded-lg file:border-0 file:outline-none
           file:text-sm file:font-semibold
@@ -142,7 +141,7 @@
                     {{ __('Cancel') }}
                 </x-jet-secondary-button>
 
-                <x-jet-button class="ml-3" type="submit">
+                <x-jet-button class="ml-3" wire:click="uploadCsv">
                     {{ __('Upload') }}
                 </x-jet-button>
             </x-slot>
