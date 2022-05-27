@@ -3,7 +3,7 @@
         <h2 class="block font-semibold text-xl text-gray-800 leading-tight">Laporan Akun Lazada</h2>
         <div class="mt-2 md:mt-0">
             <x-jet-secondary-button wire:click="openModal">Upload CSV</x-jet-secondary-button>
-            <x-jet-danger-button>Delete</x-jet-danger-button>
+            <x-jet-danger-button wire:click="hapusData">Delete</x-jet-danger-button>
         </div>
     </div>
 
@@ -109,7 +109,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <progress max="100" value="75"></progress>
                 </div>
             </div>
         </div>
@@ -125,7 +124,7 @@
 
                 <div>Upload file csv yang di download dari akun sellercenter lazada versi baru</div>
                 <div class="w-full border mt-2">
-                    <input type="file" wire:model="csv" id="csv" name="csv" class="block w-full text-sm text-slate-500
+                    <input type="file" wire:model="csv" id="csv{{ $iteration }}" name="csv" class="block w-full text-sm text-slate-500
           file:mr-4 file:py-2 file:px-4
           file:rounded-lg file:border-0 file:outline-none
           file:text-sm file:font-semibold
