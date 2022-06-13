@@ -49,13 +49,14 @@ class LaporanAkun extends Component
             array_push($dataArray, $rowArray);
         }
         fclose($handle);
-        $chunks = array_chunk($dataArray, 5000);
+        // $chunks = array_chunk($dataArray, 5000);
         LazTransaction::where('user_id', $id)->delete();
         try {
             DB::beginTransaction();
-            foreach ($chunks as $chunk) {
-                LazTransaction::insert($chunk);
-            }
+            // foreach ($chunks as $chunk) {
+            // LazTransaction::insert($chunk);
+            LazTransaction::insert($dataArray);
+            // }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
